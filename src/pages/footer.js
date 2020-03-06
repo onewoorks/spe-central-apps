@@ -6,8 +6,8 @@ export default class PageFooter extends React.Component {
 
     render() {
         return (
-            <div class="footer text-center" style={styles.footer}>
-                <div class="container" >
+            <div className="footer text-center" style={styles.footer}>
+                <div className="container" >
                 Copyright © {this_year} | Pengurusan Emas by onewoorks solutions 
                 </div>
             </div>

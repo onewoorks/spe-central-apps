@@ -5,14 +5,19 @@ const leadTypeWriter = () => {
     return txt
 }
 
-export default class Welcome extends React.Component {
-    render() {
-        return (
-            <div class="jumbotron">
-                <h1 class="display-3">Hi, <i>nama_pengguna</i>!</h1>
-                <p class="lead">{ leadTypeWriter() }</p>
-            </div>
-        )
-    }
+const Logout = (props) => {
+    return <div onClick={() => props.auth.keycloak.logout()}>logout</div>
 }
 
+const Welcome = (props) => {
+        let auth = props.auth
+        return (
+            <div className="jumbotron">
+                <h1 className="display-3">Hi, <i>{auth.tokenParsed.preferred_username}</i>!</h1>
+                <p className="lead">{ leadTypeWriter() }</p>
+                <Logout {...props} />
+            </div>
+        )
+}
+
+export default Welcome

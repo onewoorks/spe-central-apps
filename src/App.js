@@ -1,23 +1,50 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import Keycloak from 'keycloak-js'
+import './App.css'
 
-import PageHeader from './pages/header'
 import PageMain from './pages/main'
 import PageFooter from './pages/footer'
 
 import Welcome from './components/welcome'
 
-
 function App() {
-  return (
-    <div className='container-fluid'>
-      <div style={{ marginTop: 20 }}>
-        <Welcome />
-        <PageMain />
-      </div>
-      <PageFooter />
-    </div>
-  );
+    const [auth, setAuth] = React.useState({})
+
+    React.useEffect(() => {
+        const keycloak = Keycloak('./keycloak.json')
+        keycloak
+            .init({
+                onLoad: 'login-required',
+                promiseType: 'native'
+            })
+            .then(authenticated => {
+                setAuth({
+                  keycloak: keycloak,
+                  tokenParsed: keycloak.idTokenParsed,
+                  authenticated: authenticated,
+                  apps: keycloak.resourcesAccess
+                })
+            })
+    },[])
+
+    if(auth.keycloak){
+      if(auth.authenticated){
+        return (
+        <div className="container-fluid">
+            <div style={{ marginTop: 20 }}>
+                <Welcome auth={auth} />
+                <PageMain logout={auth.keycloak} />
+            </div>
+            <PageFooter />
+        </div>
+    )
+      } else {
+        return <div>unable to authenticate!</div>
+      } 
+    }
+
+    return <div>Initializing authenthication</div>
+    
 }
 
-export default App;
+export default App

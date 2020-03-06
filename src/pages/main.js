@@ -11,12 +11,12 @@ let allowed_apps = [
     {
         name: 'Customer Relation',
         link: 'https://crm.pengurusanemas.my',
-        icon: './images/apps/crm.jpg',
+        icon: './images/apps/crm.jpg'
     },
     {
         name: 'ZAK',
         link: 'https://zak.pengurusanemas.my',
-        icon: './images/apps/zak.jpg',
+        icon: './images/apps/zak.jpg'
     },
     {
         name: 'Report',
@@ -56,7 +56,7 @@ let allowed_apps = [
     {
         name: 'Website',
         link: 'https://websitekedai.com',
-        icon: './images/apps/website.jpg',
+        icon: './images/apps/website.jpg'
     },
     {
         name: 'Ecommerce',
@@ -67,23 +67,28 @@ let allowed_apps = [
         name: 'Helpdesk',
         link: 'https://billing.pengurusanemas.my',
         icon: './images/apps/helpdesk.jpg'
+    },
+    {
+        name: 'Logout',
+        link: 'https://billing.pengurusanemas.my',
+        icon: './images/apps/logout.jpg'
     }
 ]
 
-export default class PageMain extends React.Component{
-
-
-    list_apps = () => {
-        let apps = allowed_apps
-        var app_list =  apps.map((app, index)=>{
-            return <AppsBox key={index} apps={app} />
-        })
-        return app_list
-    }
-
-    render(){
-        return(
-        <div className='row row-cols-md-3 row-cols-lg-5 row-cols-sm-2'>{this.list_apps()}</div>
-        )
-    }
+const ListApps = (props) => {
+    let apps = allowed_apps
+    var app_list = apps.map((app, index) => {
+        return <AppsBox key={index} apps={app} {...props} />
+    })
+    return app_list
 }
+
+const PageMain = props => {
+    return (
+        <div className="row ">
+            <ListApps {...props} />
+        </div>
+    )
+}
+
+export default PageMain
