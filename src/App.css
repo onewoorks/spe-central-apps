@@ -13,6 +13,10 @@
   }
 }
 
+.container-fluid {
+  padding: 50px
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,4 +39,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-item {
+  -webkit-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+}
+
+.app-item:hover {
+  margin-top:-7px;
+  transition: 0.5s;
+  cursor: pointer;
+  -webkit-box-shadow: 0 12px 15px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 12px 15px 0 rgba(0,0,0,0.2);
+}
+
+.jumbotron {
+  background: url("/images/common/banner.jpg") no-repeat center right;
+  background-size: contain;
 }

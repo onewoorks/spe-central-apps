@@ -8,7 +8,7 @@ export default class PageFooter extends React.Component {
         return (
             <div class="footer text-center" style={styles.footer}>
                 <div class="container" >
-                Copyright © {this_year} by onewoorks solutions
+                Copyright © {this_year} | Pengurusan Emas by onewoorks solutions 
                 </div>
             </div>
         )

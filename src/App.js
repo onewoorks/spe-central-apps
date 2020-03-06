@@ -10,9 +10,8 @@ import Welcome from './components/welcome'
 
 function App() {
   return (
-    <div className='container'>
-      <PageHeader />
-      <div style={{ marginTop: 80 }}>
+    <div className='container-fluid'>
+      <div style={{ marginTop: 20 }}>
         <Welcome />
         <PageMain />
       </div>
