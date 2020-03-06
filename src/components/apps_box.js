@@ -1,9 +1,8 @@
 import React from 'react'
 
 const LogoutBox = (props) => {
-    console.log(props)
     return (
-        <div onClick={()=> props.logout.logout() } className="col-sm-6 col-lg-3 col-md-4 text-center offset-lg-6 offset-md-4">
+        <div onClick={()=> props.logout.logout() } className="col-12 text-center ">
             <div className="card mb-4 app-item">
                 <div className="card-body">
                     <img
@@ -24,7 +23,7 @@ const LogoutBox = (props) => {
 
 const NormalBox = (props) => {
     return (
-        <div className="col-sm-6 col-lg-3 col-md-4 text-center">
+        <div className="col-12 text-center">
             <div className="card mb-4 app-item">
                 <div className="card-body">
                     <img

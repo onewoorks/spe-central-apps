@@ -15,7 +15,6 @@ const Welcome = (props) => {
             <div className="jumbotron">
                 <h1 className="display-3">Hi, <i>{auth.tokenParsed.preferred_username}</i>!</h1>
                 <p className="lead">{ leadTypeWriter() }</p>
-                <Logout {...props} />
             </div>
         )
 }

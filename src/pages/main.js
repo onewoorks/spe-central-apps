@@ -69,6 +69,11 @@ let allowed_apps = [
         icon: './images/apps/helpdesk.jpg'
     },
     {
+        name: 'Setup',
+        link: 'https://billing.pengurusanemas.my',
+        icon: './images/apps/setup.jpg'
+    },
+    {
         name: 'Logout',
         link: 'https://billing.pengurusanemas.my',
         icon: './images/apps/logout.jpg'
@@ -85,7 +90,7 @@ const ListApps = (props) => {
 
 const PageMain = props => {
     return (
-        <div className="row ">
+        <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2">
             <ListApps {...props} />
         </div>
     )
