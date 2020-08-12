@@ -9,7 +9,6 @@ import Welcome from './components/welcome'
 
 function App() {
     const [auth, setAuth] = React.useState({})
-  console.log(process.env)
     React.useEffect(() => {
         const keycloak = Keycloak({
             realm: process.env.REACT_APP_SSO_REALM ,
