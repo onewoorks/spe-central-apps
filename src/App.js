@@ -10,11 +10,7 @@ import Welcome from './components/welcome'
 function App() {
     const [auth, setAuth] = React.useState({})
     React.useEffect(() => {
-        const keycloak = Keycloak({
-            realm: process.env.REACT_APP_SSO_REALM ,
-            'url': 'https://sso.pengurusanemas.my/auth',
-            clientId: 'apps_central',
-        })
+        const keycloak = Keycloak('./keycloak.json')
         keycloak
             .init({
                 onLoad: 'login-required',
