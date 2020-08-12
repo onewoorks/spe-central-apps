@@ -9,13 +9,14 @@ import Welcome from './components/welcome'
 
 function App() {
     const [auth, setAuth] = React.useState({})
-
+    console.log(process.env)
     React.useEffect(() => {
         const keycloak = Keycloak('./keycloak.json')
         keycloak
             .init({
                 onLoad: 'login-required',
-                promiseType: 'native'
+                promiseType: 'native',
+                checkLoginIframe: false
             })
             .then(authenticated => {
                 setAuth({
@@ -33,7 +34,7 @@ function App() {
         <div className="container-fluid">
             <div style={{ marginTop: 20 }}>
                 <Welcome auth={auth} />
-                <PageMain logout={auth.keycloak} />
+                <PageMain logout={auth.keycloak} allowed_apps={auth.tokenParsed.apps_allowed} />
             </div>
             <PageFooter />
         </div>

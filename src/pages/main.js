@@ -2,96 +2,49 @@ import React from 'react'
 
 import AppsBox from '../components/apps_box'
 
-let allowed_apps = [
-    {
-        name: 'Inventory',
-        link: 'https://inventory.pengurusanemas.my',
-        icon: './images/apps/inventory.jpg'
-    },
-    {
-        name: 'Customer Relation',
-        link: 'https://crm.pengurusanemas.my',
-        icon: './images/apps/crm.jpg'
-    },
-    {
-        name: 'ZAK',
-        link: 'https://zak.pengurusanemas.my',
-        icon: './images/apps/zak.jpg'
-    },
-    {
-        name: 'Report',
-        link: 'https://accounting.pengurusanemas.my',
-        icon: './images/apps/reports.jpg'
-    },
-    {
-        name: 'Human Resource',
-        link: 'https://hr.pengurusanemas.my',
-        icon: './images/apps/hr.jpg'
-    },
-    {
-        name: 'Analytic',
-        link: 'https://analytic.pengurusanemas.my',
-        icon: './images/apps/analytic.jpg'
-    },
-    {
-        name: 'Billing',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/billing.jpg'
-    },
-    {
-        name: 'Digital Signage',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/digital-signage.jpg'
-    },
-    {
-        name: 'Point Of Sales',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/pos.jpg'
-    },
-    {
-        name: 'Staff Apps',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/staff-apps.jpg'
-    },
-    {
-        name: 'Website',
-        link: 'https://websitekedai.com',
-        icon: './images/apps/website.jpg'
-    },
-    {
-        name: 'Ecommerce',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/ecommerce.jpg'
-    },
-    {
-        name: 'Helpdesk',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/helpdesk.jpg'
-    },
-    {
-        name: 'Setup',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/setup.jpg'
-    },
-    {
-        name: 'Logout',
-        link: 'https://billing.pengurusanemas.my',
-        icon: './images/apps/logout.jpg'
+const PageMain = (props) => {
+    const [ apps, setApps ] = React.useState([])
+    const [ showApps, setShowApps ] = React.useState([])
+    const [ isMeta, setIsMeta ] = React.useState(false)
+    const [ openUrl, setOpenUrl ] = React.useState('')
+    const [ icon, setIcon ] = React.useState('')
+
+    React.useEffect(()=>{
+        setApps(props.allowed_apps)
+        setShowApps(props.allowed_apps)
+    },[props])
+
+    const ListApps = (props) => {
+            var app_list = showApps.map((app, index) => {
+            return <AppsBox 
+                        key={index} 
+                        apps={app} 
+                        showSub={()=>showSub(app.domain)} 
+                        is_meta={isMeta} 
+                        icon={icon}
+                        openDomain={()=>openDomain(openUrl)} 
+                        {...props} />
+        })
+        return app_list
     }
-]
 
-const ListApps = (props) => {
-    let apps = allowed_apps
-    var app_list = apps.map((app, index) => {
-        return <AppsBox key={index} apps={app} {...props} />
-    })
-    return app_list
-}
+    const showSub = (domain) => {
+        let filter_apps = apps.filter(x => x.domain === domain)
+        setIsMeta(true)
+        setOpenUrl(filter_apps[0].link)
+        setIcon(filter_apps[0].icon)
+        if(typeof filter_apps[0].meta !== 'undefined'){
+            setShowApps(filter_apps[0].meta.allowed)
+        } else {
+            window.location.href = filter_apps[0].link
+        }
+    }
 
-const PageMain = props => {
+    const openDomain = (domain_link) => window.location.href = domain_link
+
     return (
-        <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2">
-            <ListApps {...props} />
+        <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 justify-content-center">
+            <ListApps {...props} is_meta={isMeta}/>
         </div>
     )
 }

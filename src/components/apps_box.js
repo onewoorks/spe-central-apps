@@ -23,7 +23,7 @@ const LogoutBox = (props) => {
 
 const NormalBox = (props) => {
     return (
-        <div className="col-12 text-center">
+        <div className="col-12 text-center" onClick={()=>props.showSub()}>
             <div className="card mb-4 app-item">
                 <div className="card-body">
                     <img
@@ -42,11 +42,32 @@ const NormalBox = (props) => {
     )
 }
 
+const MetaBox = props => {
+    return (
+        <div className="col-12 text-center" onClick={()=>props.openDomain()}>
+            <div className="card mb-4 app-item">
+                <div className="card-body">
+                    <img
+                        alt=""
+                        src={props.icon}
+                        className="img-fluid"
+                        style={{ maxHeight: 100 }}
+                    />
+                </div>
+
+                <div className="card-footer text-uppercase">
+                    {props.apps.domain}
+                </div>
+            </div>
+        </div>
+    )
+}
+
 const AppsBox = props => {
-    if(props.apps.name.toLowerCase() === 'logout'){
+    if(typeof props.apps.name !== 'undefined' && props.apps.name.toLowerCase() === 'logout'){
         return <LogoutBox {...props} />
     } else {
-        return <NormalBox {...props} />
+        return (!props.is_meta) ? <NormalBox {...props} /> : <MetaBox {...props} />
     }   
 }
 

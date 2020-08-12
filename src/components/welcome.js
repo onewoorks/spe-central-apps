@@ -5,10 +5,6 @@ const leadTypeWriter = () => {
     return txt
 }
 
-const Logout = (props) => {
-    return <div onClick={() => props.auth.keycloak.logout()}>logout</div>
-}
-
 const Welcome = (props) => {
         let auth = props.auth
         return (
