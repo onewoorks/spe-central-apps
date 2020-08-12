@@ -13,10 +13,7 @@ function App() {
         const keycloak = Keycloak({
             realm: process.env.REACT_APP_SSO_REALM ,
             'url': 'https://sso.pengurusanemas.my/auth',
-            'ssl-required': 'external',
             clientId: 'apps_central',
-            'public-client': true,
-            'confidential-port': 0,
         })
         keycloak
             .init({
